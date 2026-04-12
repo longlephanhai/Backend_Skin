@@ -4,22 +4,29 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose/dist';
 import { Model } from 'mongoose';
 import { User } from './schema/user.schema';
+import { IUser } from 'src/types';
 
 @Injectable()
 export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    const newUser = await this.userModel.create(createUserDto);
+    return newUser;
   }
 
   findAll() {
     return `This action returns all users`;
   }
 
-  async findOne(email: string) {
+
+  async findByEmail(email: string) {
     return await this.userModel.findOne({ email });
+  }
+
+  async findOne(id: string) {
+    return await this.userModel.findById(id);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

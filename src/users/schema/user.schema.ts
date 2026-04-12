@@ -24,7 +24,7 @@ export class User {
     gender: Gender
 
     @Prop({ required: true, type: [String], enum: SkinCondition })
-    currentSkinTags: SkinCondition[];
+    currentSkinTags?: SkinCondition[];
 
     @Prop()
     avatar?: string;
