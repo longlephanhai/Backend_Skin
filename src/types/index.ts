@@ -12,7 +12,6 @@ export enum SkinCondition {
     ENLARGED_PORES = 'Englarged-Pores',
     EYEBAGS = 'Eyebags',
     OILY_SKIN = 'Oily-Skin',
-    SKIN_REDNESS = 'Skin-Redness',
     WHITEHEADS = 'Whiteheads',
     WRINKLES = 'Wrinkles'
 }

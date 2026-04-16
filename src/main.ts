@@ -13,6 +13,13 @@ async function bootstrap() {
   const reflector = app.get(Reflector);
   app.useGlobalInterceptors(new TransformInterceptor(reflector));
   const configService = app.get(ConfigService);
+  app.enableCors({
+    origin: configService.get('FRONTEND_URL'),
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true,
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
   const port = configService.get('PORT');
   await app.listen(port);
 }

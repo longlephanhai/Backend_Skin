@@ -14,16 +14,28 @@ export class AuthService {
 
     async validateUser(email: string, password: string) {
         const user = await this.usersService.findByEmail(email);
-        if (user && user.password === password) {
-            const { password, ...result } = user;
+        const isPasswordValid = user && bcrypt.compareSync(password, user.password);
+        if (user && isPasswordValid) {
+            const { password, ...result } = user.toObject();
             return result;
         }
         return null;
     }
 
     async login(user: IUser) {
-        const payload = { email: user._id, sub: user._id };
+        const payload = {
+            email: user.email,
+            sub: user._id,
+            fullName: user.fullName,
+        };
         return {
+            user: {
+                _id: user._id,
+                email: user.email,
+                fullName: user.fullName,
+                age: user.age,
+                gender: user.gender
+            },
             access_token: this.jwtService.sign(payload),
         };
     }
