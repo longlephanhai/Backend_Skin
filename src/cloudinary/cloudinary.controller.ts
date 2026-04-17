@@ -13,7 +13,6 @@ export class CloudinaryController {
     constructor(private readonly cloudinaryService: CloudinaryService) { }
 
     @Post('uploads')
-    
     @ResponseMessage('Upload Multiple Files')
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'front', maxCount: 1 },
@@ -21,10 +20,10 @@ export class CloudinaryController {
         { name: 'right', maxCount: 1 },
     ]))
     uploadFile(@UploadedFiles() files: { front?: Express.Multer.File[], left?: Express.Multer.File[], right?: Express.Multer.File[] }) {
-        return this.cloudinaryService.uploadFiles([
-            ...(files.front || []),
-            ...(files.left || []),
-            ...(files.right || []),
-        ])
+        return this.cloudinaryService.uploadFiles({
+            front: files.front || [],
+            left: files.left || [],
+            right: files.right || [],
+        });
     }
 }

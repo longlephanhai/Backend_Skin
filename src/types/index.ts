@@ -1,3 +1,7 @@
+import { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
+
+export type CloudinaryResponse = UploadApiResponse | UploadApiErrorResponse;
+
 export enum Gender {
     MALE = 'male',
     FEMALE = 'female',
@@ -58,4 +62,9 @@ export interface IDetection {
     note?: string;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface ICloudinaryRender {
+    url: string;
+    public_id: string;
 }

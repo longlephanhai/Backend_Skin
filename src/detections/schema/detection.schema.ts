@@ -62,6 +62,19 @@ export class Detection {
         right: ViewResult;
     };
 
+    @Prop({
+        type: {
+            front: String,
+            left: String,
+            right: String
+        },
+        _id: false
+    })
+    original_images: {
+        front: string;
+        left: string;
+        right: string;
+    };
 }
 
 export const DetectionSchema = SchemaFactory.createForClass(Detection);
