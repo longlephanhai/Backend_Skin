@@ -2,11 +2,13 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { HttpExceptionFilter } from './core/http-exception.filter';
 import { TransformInterceptor } from './core/transform.interceptor';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -19,7 +21,7 @@ async function bootstrap() {
     credentials: true,
     allowedHeaders: 'Content-Type, Authorization',
   });
-
+  app.useStaticAssets(join(__dirname, '..', 'public'));
   const port = configService.get('PORT');
   await app.listen(port);
 }

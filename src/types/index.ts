@@ -30,3 +30,32 @@ export interface IUser {
     updatedAt: Date;
 }
 
+export interface IDetectionDetail {
+    label: SkinCondition;
+    confidence: number;
+    bbox: [number, number, number, number];
+    crop_url: string;
+}
+
+export interface IViewResult {
+    total: number;
+    stats: Partial<Record<SkinCondition, number>>;
+    detections: IDetectionDetail[];
+    visualization_url: string;
+}
+
+export interface IDetection {
+    _id: string;
+    userId: string;
+    session_id: string;
+    total_acne: number;
+    stats: Partial<Record<SkinCondition, number>>;
+    results: {
+        front: IViewResult;
+        left: IViewResult;
+        right: IViewResult;
+    };
+    note?: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

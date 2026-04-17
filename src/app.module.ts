@@ -6,6 +6,10 @@ import { MongooseModule } from '@nestjs/mongoose/dist';
 import { Connection } from 'mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { DetectionsModule } from './detections/detections.module';
+import { FilesModule } from './files/files.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+
 
 @Module({
   imports: [
@@ -28,7 +32,10 @@ import { AuthModule } from './auth/auth.module';
       inject: [ConfigService],
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    DetectionsModule,
+    FilesModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
