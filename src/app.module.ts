@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { DetectionsModule } from './detections/detections.module';
 import { FilesModule } from './files/files.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ProductsModule } from './products/products.module';
 
 
 @Module({
@@ -36,6 +37,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     DetectionsModule,
     FilesModule,
     CloudinaryModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

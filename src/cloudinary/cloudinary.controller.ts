@@ -1,12 +1,15 @@
 import {
     Controller,
     Post,
+    UploadedFile,
     UploadedFiles,
+    UseFilters,
     UseInterceptors,
 } from '@nestjs/common';
 import { CloudinaryService } from './cloudinary.service';
-import { FileFieldsInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express';
 import { ResponseMessage } from 'src/decorator/customize';
+import { HttpExceptionFilter } from 'src/core/http-exception.filter';
 
 @Controller('cloudinary')
 export class CloudinaryController {
@@ -26,4 +29,13 @@ export class CloudinaryController {
             right: files.right || [],
         });
     }
+
+    @Post('upload-product')
+    @ResponseMessage('Upload File Successfully')
+    @UseFilters(new HttpExceptionFilter())
+    @UseInterceptors(FileInterceptor('file'))
+    uploadImgProduct(@UploadedFile() file: Express.Multer.File) {
+        return this.cloudinaryService.uploadFile(file);
+    }
+
 }
