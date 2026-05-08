@@ -16,6 +16,12 @@ export class ProductsController {
     return this.productsService.create(createProductDto);
   }
 
+  @Post('recommend')
+  @ResponseMessage('Recommended products retrieved successfully')
+  recommend(@Body() resultPredict: any[]) {
+    return this.productsService.recommend(resultPredict);
+  }
+
   @Get()
   findAll() {
     return this.productsService.findAll();

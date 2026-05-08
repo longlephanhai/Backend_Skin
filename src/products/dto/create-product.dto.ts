@@ -7,6 +7,9 @@ export class CreateProductDto {
     @IsNotEmpty({ message: 'Description is required' })
     description: string;
 
+    @IsNotEmpty({ message: 'Instructions are required' })
+    instructions: string;
+
     @IsNotEmpty({ message: 'Category is required' })
     category: string;
 

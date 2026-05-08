@@ -31,10 +31,11 @@ export class DetectionsController {
   //   return this.detectionsService.create(createDetectionDto);
   // }
 
-  // @Get()
-  // findAll() {
-  //   return this.detectionsService.findAll();
-  // }
+  @Get()
+  @ResponseMessage('Get Detections Successfully')
+  findAll(@User() user: any) {
+    return this.detectionsService.findAll(user);
+  }
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {

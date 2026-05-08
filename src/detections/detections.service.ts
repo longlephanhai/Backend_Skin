@@ -73,8 +73,12 @@ export class DetectionsService {
     return finalResult;
   }
 
-  findAll() {
-    return `This action returns all detections`;
+  async findAll(user: any) {
+    const detections = await this.detectionModel.find({
+      user: user.userId
+    })
+      .sort({ createdAt: -1 });
+    return detections;
   }
 
   findOne(id: number) {
