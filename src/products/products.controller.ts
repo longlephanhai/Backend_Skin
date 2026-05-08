@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseFilters, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ResponseMessage } from 'src/decorator/customize';
+import { HttpExceptionFilter } from 'src/core/http-exception.filter';
+import { FileInterceptor } from 'node_modules/@nestjs/platform-express';
 
 @Controller('products')
 export class ProductsController {
