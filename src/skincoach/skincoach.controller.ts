@@ -11,8 +11,13 @@ export class SkincoachController {
   @Post()
   @ResponseMessage('Create skincoach successfully')
   create(@Body() createSkincoachDto: CreateSkincoachDto, @User() user: any) {
-    console.log("Received CreateSkincoachDto:", createSkincoachDto);
     return this.skincoachService.create(createSkincoachDto, user);
+  }
+
+  @Get()
+  @ResponseMessage('Get skincoach by user successfully')
+  getByUser(@User() user: any) {
+    return this.skincoachService.getByUser(user);
   }
 
   @Get()

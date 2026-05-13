@@ -4,35 +4,39 @@ import {
   IsNumber, IsOptional, ValidateNested, IsIn
 } from 'class-validator';
 
-class SkinTaskDto {
+class DailyTaskDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
   @IsString()
-  @IsIn(['morning', 'evening', 'weekly', 'anytime'])
+  @IsIn(['morning', 'evening', 'anytime'])
   timeOfDay: string;
 
   @IsString()
   @IsIn(['cleanser', 'treatment', 'moisturizer', 'suncare', 'lifestyle', 'diet', 'assessment'])
   tag: string;
 
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  frequency: string;
+  frequency?: string;
 }
 
-class ActionPlanDto {
+class DailyRoutineDto {
   @IsNumber()
-  week: number;
+  day: number;
 
   @IsString()
-  focus: string;
+  phase: string;
 
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => SkinTaskDto)
-  tasks: SkinTaskDto[];
+  @Type(() => DailyTaskDto)
+  tasks: DailyTaskDto[];
+
+  @IsOptional()
+  @IsString()
+  note?: string;
 }
 
 export class CreateSkincoachDto {

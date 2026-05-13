@@ -78,7 +78,7 @@ type TaskTag =
     | 'diet'
     | 'assessment';
 
-type TaskTimeOfDay = 'morning' | 'evening' | 'weekly' | 'anytime';
+type TaskTimeOfDay = 'morning' | 'evening' | 'weekly' | 'anytime' | 'both';
 
 interface ISkinTask {
     name: string;

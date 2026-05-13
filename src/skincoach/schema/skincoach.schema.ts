@@ -4,30 +4,33 @@ import { HydratedDocument, Types } from 'mongoose';
 export type SkinCoachDocument = HydratedDocument<SkinCoach>;
 
 @Schema({ _id: false })
-class SkinTask {
+class DailyTask {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true, enum: ['morning', 'evening', 'weekly', 'anytime'] })
+  @Prop({ required: true })
   timeOfDay: string;
 
-  @Prop({ required: true, enum: ['cleanser', 'treatment', 'moisturizer', 'suncare', 'lifestyle', 'diet', 'assessment'] })
+  @Prop({ required: true })
   tag: string;
 
-  @Prop({ required: true })
-  frequency: string;
+  @Prop({ required: false })
+  frequency?: string;
 }
 
 @Schema({ _id: false })
-class ActionPlan {
+class DailyRoutine {
   @Prop({ required: true })
-  week: number;
+  day: number;
 
   @Prop({ required: true })
-  focus: string;
+  phase: string;
 
-  @Prop({ type: [SkinTask], default: [] })
-  tasks: SkinTask[];
+  @Prop({ type: [DailyTask], required: true })
+  tasks: DailyTask[];
+
+  @Prop({ required: false })
+  note?: string;
 }
 
 @Schema({ timestamps: true })
@@ -57,15 +60,21 @@ export class SkinCoach {
   rootCause: string;
 
   @Prop()
-  analysis: string; 
+  analysis: string;
 
-  @Prop({ type: [ActionPlan] })
-  timeline: ActionPlan[];
+  @Prop({ type: [DailyRoutine], default: [] })
+  routine30Days: DailyRoutine[];
 
   @Prop({ default: 7 })
   nextCheckupDays: number;
 
-  @Prop()
+  @Prop({ type: Map, of: Boolean, default: {} })
+  dayCompletionStatus: Map<number, boolean>; 
+
+  @Prop({ default: 1 })
+  currentDay: number;
+
+  @Prop({ default: false })
   isCompleted: boolean;
 }
 
