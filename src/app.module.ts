@@ -10,6 +10,7 @@ import { DetectionsModule } from './detections/detections.module';
 import { FilesModule } from './files/files.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ProductsModule } from './products/products.module';
+import { SkincoachModule } from './skincoach/skincoach.module';
 
 
 @Module({
@@ -38,6 +39,7 @@ import { ProductsModule } from './products/products.module';
     FilesModule,
     CloudinaryModule,
     ProductsModule,
+    SkincoachModule,
   ],
   controllers: [AppController],
   providers: [AppService],

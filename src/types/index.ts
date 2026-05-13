@@ -68,3 +68,27 @@ export interface ICloudinaryRender {
     url: string;
     public_id: string;
 }
+
+type TaskTag =
+    | 'cleanser'
+    | 'treatment'
+    | 'moisturizer'
+    | 'suncare'
+    | 'lifestyle'
+    | 'diet'
+    | 'assessment';
+
+type TaskTimeOfDay = 'morning' | 'evening' | 'weekly' | 'anytime';
+
+interface ISkinTask {
+    name: string;
+    timeOfDay: TaskTimeOfDay;
+    tag: TaskTag;
+    frequency: string;
+}
+
+interface IWeekTimeline {
+    week: number;
+    focus: string;
+    tasks: ISkinTask[];
+}
