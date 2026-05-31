@@ -211,7 +211,7 @@ FORMAT JSON ĐẦU RA YÊU CẦU (TUYỆT ĐỐI CHỈ TRẢ VỀ JSON THUẦN, 
 
 
       const rawText = result.response.text();
-      console.log('response chars:', rawText.length);
+    
       const jsonStart = rawText.indexOf('{');
       const jsonEnd = rawText.lastIndexOf('}');
 

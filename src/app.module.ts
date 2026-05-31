@@ -11,6 +11,7 @@ import { FilesModule } from './files/files.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ProductsModule } from './products/products.module';
 import { SkincoachModule } from './skincoach/skincoach.module';
+import { AiAssistantModule } from './ai-assistant/ai-assistant.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { SkincoachModule } from './skincoach/skincoach.module';
     CloudinaryModule,
     ProductsModule,
     SkincoachModule,
+    AiAssistantModule,
   ],
   controllers: [AppController],
   providers: [AppService],
