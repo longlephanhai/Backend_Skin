@@ -14,6 +14,12 @@ class DailyTask {
   @Prop({ required: true })
   tag: string;
 
+  @Prop({ required: true })
+  topic: string;
+
+  @Prop({ required: true })
+  level: string;
+
   @Prop({ required: false })
   frequency?: string;
 }
@@ -25,6 +31,9 @@ class DailyRoutine {
 
   @Prop({ required: true })
   phase: string;
+
+  @Prop({ type: [String], default: [] })
+  maintain: string[];
 
   @Prop({ type: [DailyTask], required: true })
   tasks: DailyTask[];
@@ -69,7 +78,7 @@ export class SkinCoach {
   nextCheckupDays: number;
 
   @Prop({ type: Map, of: Boolean, default: {} })
-  dayCompletionStatus: Map<number, boolean>; 
+  dayCompletionStatus: Map<number, boolean>;
 
   @Prop({ default: 1 })
   currentDay: number;
